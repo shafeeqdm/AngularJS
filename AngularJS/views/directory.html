@@ -1,0 +1,22 @@
+<div ng-controller="myAppController">
+  <p>{{message}}</p>
+  <button ng-click="order = 'name'">Name</button>
+  <button ng-click="order = 'prg'">Dev</button>
+  <input type="text" ng-model="search" />
+  <div>
+    <ul>
+      <li
+        ng-repeat="dev in devs | orderBy : order | filter : search"
+        ng-hide="!dev.available"
+      >
+        {{dev.name}} - {{dev.rate | currency}}
+      </li>
+    </ul>
+  </div>
+  <form ng-submit="addDev()">
+    <input type="text" placeholder="Name" ng-model="newdev.name" />
+    <input type="text" placeholder="Prg" ng-model="newdev.prg" />
+    <input type="text" placeholder="rate" ng-model="newdev.rate" />
+    <input type="submit" value="Add dev" />
+  </form>
+</div>
